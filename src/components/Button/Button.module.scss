@@ -1,0 +1,18 @@
+.Button {
+	font-family: 'Raleway', sans-serif;
+	font-size: 15px;
+	font-weight: 500;
+	color: white;
+	background-color: rgba(255, 255, 255, 0.1);
+	border: none;
+	
+	padding: 5px 20px;
+	margin: 0 10px;
+	border-radius: 15px;
+	
+	&:hover {
+		cursor: pointer;
+		background-color: rgba(255, 255, 255, 0.25);
+	}
+	
+}

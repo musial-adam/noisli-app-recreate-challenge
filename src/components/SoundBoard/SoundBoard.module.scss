@@ -1,0 +1,17 @@
+.SoundBoard {
+	
+	
+	// border: 2px solid black;
+	
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	grid-template-rows: repeat(8, 1fr);
+	grid-column-gap: 0px;
+	grid-row-gap: 40px;
+	
+	justify-items: center;
+	
+	max-width: 50%;
+	margin: auto;
+	margin-top: 80px;
+}
