@@ -15,4 +15,12 @@
 		margin-bottom: 40px;
 		
 	}
+	
+	&:hover {
+		cursor: pointer;
+	}
+	
+	&:focus {
+		outline: 1px solid white;
+	}
 }
