@@ -1,10 +1,11 @@
+//! Work on <track> for audio files!
+//! Work on <img role="button" /> - not good practise!
+
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styles from './SoundTile.module.scss';
 
 import Slider from '../Slider/Slider';
-
-//! Work on <track> for audio files!
 
 export class SoundTile extends Component {
   static propTypes = {
@@ -16,14 +17,6 @@ export class SoundTile extends Component {
   state = {
     on: false,
   };
-
-  // componentDidMount() {
-  //   document.addEventListener('keypress', this.handleKeyPress);
-  // }
-
-  // componentWillUnmount() {
-  //   document.removeEventListener('keypress', this.handleKeyPress);
-  // }
 
   toggleHandler = () => {
     this.togglePlay();
@@ -55,25 +48,28 @@ export class SoundTile extends Component {
   render() {
     const { on } = this.state;
     const { alt, icon, sound } = this.props;
-    return (
-      <div
-        className={styles.SoundTile}
+
+    const SoundButton = (
+      <img
+        role="button"
         onClick={this.toggleHandler}
         onKeyPress={this.handleKeyPress}
-        role="button"
         tabIndex={0}
-      >
+        src={`./assets/icons/${icon}`}
+        alt={alt}
+        style={on ? { opacity: 1 } : { opacity: 0.5 }}
+      />
+    );
+
+    return (
+      <div className={styles.SoundTile}>
         {on ? (
           <>
-            <img src={`./assets/icons/${icon}`} alt={alt} />
+            {SoundButton}
             <Slider />
           </>
         ) : (
-          <img
-            src={`./assets/icons/${icon}`}
-            alt={alt}
-            style={{ opacity: 0.5 }}
-          />
+          <>{SoundButton}</>
         )}
         <audio id={sound} preload="auto" loop>
           <track default kind="captions" />

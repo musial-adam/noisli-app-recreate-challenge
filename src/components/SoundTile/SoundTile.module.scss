@@ -14,13 +14,14 @@
 		height: 90px;
 		margin-bottom: 40px;
 		
+		&:hover {
+			cursor: pointer;
+		}
+		
+		&:focus {
+			outline: 1px solid white;
+		}
 	}
 	
-	&:hover {
-		cursor: pointer;
-	}
 	
-	&:focus {
-		outline: 1px solid white;
-	}
 }
