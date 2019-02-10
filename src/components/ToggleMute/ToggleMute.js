@@ -1,24 +1,43 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import styles from './ToggleMute.module.scss';
 
 export class ToggleMute extends Component {
-  static propTypes = {};
-
   state = {
-    on: true
+    on: true,
   };
 
+  componentDidMount() {
+    document.addEventListener('keypress', this.handleKeyPress);
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener('keypress', this.handleKeyPress);
+  }
+
   toggleHandler = () => {
-    this.setState((state, props) => {
+    this.setState(state => {
       return { on: !state.on };
     });
   };
 
+  handleKeyPress = event => {
+    if (event.key === 'm' || event.key === 'M') {
+      this.toggleHandler();
+    }
+  };
+
   render() {
+    const { on } = this.state;
     return (
-      <div className={styles.ToggleMute} onClick={this.toggleHandler}>
-        {this.state.on ? (
+      <div
+        className={styles.ToggleMute}
+        onClick={this.toggleHandler}
+        onKeyPress={this.handleKey}
+        title="Click or press M to mute/unmute"
+        role="button"
+        tabIndex={0}
+      >
+        {on ? (
           <>
             <img
               src="./assets/icons/00-unmute.png"

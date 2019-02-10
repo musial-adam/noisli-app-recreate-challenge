@@ -1,4 +1,7 @@
 module.exports = {
+		"env": {
+			"browser": true,
+		},
 		"extends": [
 			"airbnb",
 			"prettier",
@@ -12,6 +15,7 @@ module.exports = {
 					"trailingComma": "es5",
 					"singleQuote": true,
 					"printWidth": 80,
+					"useTabs": false,
 				}
 			],
 		},

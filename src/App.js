@@ -12,13 +12,13 @@ class App extends Component {
         <h1>Noisli</h1>
         <h2>
           Improve focus and boost your productivity.
-					<br />
-					Mix different sounds and create your perfect environment.
+          <br />
+          Mix different sounds and create your perfect environment.
         </h2>
-				<ToggleMute />
-				<Button>Random</Button>
-				<Button>Productivity</Button>
-				<Button>Relax</Button>
+        <ToggleMute />
+        <Button>Random</Button>
+        <Button>Productivity</Button>
+        <Button>Relax</Button>
         <SoundBoard />
       </div>
     );
