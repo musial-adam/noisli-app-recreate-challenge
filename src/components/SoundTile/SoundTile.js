@@ -16,6 +16,7 @@ export class SoundTile extends Component {
 
   state = {
     on: false,
+    volume: 0.1,
   };
 
   toggleHandler = () => {
@@ -26,14 +27,53 @@ export class SoundTile extends Component {
   };
 
   handleKeyPress = event => {
-    if (event.key === ' ') {
+    let { volume } = this.state;
+    const { sound } = this.props;
+    const soundHook = document.getElementById(sound);
+
+    event.preventDefault();
+
+    if (event.keyCode === 32) {
       event.preventDefault();
       this.toggleHandler();
     }
+    if ((event.keyCode === 38 || event.keyCode === 39) && volume < 1) {
+      volume += 0.01;
+      volume = parseFloat(volume.toPrecision(2));
+      soundHook.volume = volume;
+      // console.log(volume);
+      this.setState({ volume });
+    }
+    if ((event.keyCode === 37 || event.keyCode === 40) && volume > 0) {
+      volume -= 0.01;
+      volume = parseFloat(volume.toPrecision(2));
+      soundHook.volume = volume;
+      // console.log(volume);
+      this.setState({ volume });
+    }
+    //   // if (event.key === '39') {
+    //   // event.preventDefault();
+    //   // this.toggleHandler();
+    //   console.log(`You press ${event.charCode}`);
+    // }
+
+    // console.log(`boolean altKey ${event.altKey}`);
+    // console.log(`number charCode ${event.charCode}`);
+    // console.log(`boolean ctrlKey ${event.ctrlKey}`);
+    // console.log(`string key ${event.key}`);
+    // console.log(`number keyCode ${event.keyCode}`);
+    // console.log(`string locale ${event.locale}`);
+    // console.log(`number location ${event.location}`);
+    // console.log(`boolean metaKey ${event.metaKey}`);
+    // console.log(`boolean repeat ${event.repeat}`);
+    // console.log(`boolean shiftKey ${event.shiftKey}`);
+    // console.log(`number which ${event.which}`);
+    // console.log('------------------------------------');
+    // console.log('boolean getModifierState(key))
   };
 
   togglePlay = () => {
-    const { on } = this.state;
+    const { on, volume } = this.state;
     const { sound } = this.props;
 
     const soundHook = document.getElementById(sound);
@@ -41,6 +81,9 @@ export class SoundTile extends Component {
       soundHook.pause();
     } else {
       soundHook.currentTime = 0;
+
+      //! Playing around with volume!
+      soundHook.volume = volume;
       soundHook.play();
     }
   };
@@ -53,7 +96,7 @@ export class SoundTile extends Component {
       <img
         role="button"
         onClick={this.toggleHandler}
-        onKeyPress={this.handleKeyPress}
+        onKeyDown={this.handleKeyPress}
         tabIndex={0}
         src={`./assets/icons/${icon}`}
         alt={alt}
