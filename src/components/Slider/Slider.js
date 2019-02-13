@@ -7,7 +7,10 @@ const Slider = props => {
   return (
     <div className={styles.SliderContainer}>
       <div className={styles.Slider}>
-        <div className={styles.SliderControl} />
+        <div
+          className={styles.SliderControl}
+          style={{ left: `${props.sliderPos}px` }}
+        />
       </div>
     </div>
   );

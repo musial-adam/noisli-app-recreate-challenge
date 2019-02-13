@@ -17,6 +17,7 @@ export class SoundTile extends Component {
   state = {
     on: false,
     volume: 0.1,
+    sliderPos: 20,
   };
 
   toggleHandler = () => {
@@ -27,30 +28,38 @@ export class SoundTile extends Component {
   };
 
   handleKeyPress = event => {
-    let { volume } = this.state;
+    let { volume, sliderPos } = this.state;
     const { sound } = this.props;
     const soundHook = document.getElementById(sound);
 
-    event.preventDefault();
+    // event.preventDefault();
 
     if (event.keyCode === 32) {
       event.preventDefault();
       this.toggleHandler();
     }
     if ((event.keyCode === 38 || event.keyCode === 39) && volume < 1) {
+      event.preventDefault();
       volume += 0.01;
       volume = parseFloat(volume.toPrecision(2));
       soundHook.volume = volume;
+
+      sliderPos = volume * 200;
+      // sliderPos = parseInt(sliderPos.toPrecision(0));
+      console.log(`sliderPos: ${sliderPos}`);
       // console.log(volume);
-      this.setState({ volume });
+      this.setState({ volume, sliderPos });
     }
     if ((event.keyCode === 37 || event.keyCode === 40) && volume > 0) {
+      event.preventDefault();
       volume -= 0.01;
       volume = parseFloat(volume.toPrecision(2));
       soundHook.volume = volume;
+      sliderPos = volume * 200;
       // console.log(volume);
-      this.setState({ volume });
+      this.setState({ volume, sliderPos });
     }
+    // console.log(`volume is ${volume}`);
     //   // if (event.key === '39') {
     //   // event.preventDefault();
     //   // this.toggleHandler();
@@ -89,7 +98,7 @@ export class SoundTile extends Component {
   };
 
   render() {
-    const { on } = this.state;
+    const { on, sliderPos } = this.state;
     const { alt, icon, sound } = this.props;
 
     const SoundButton = (
@@ -109,7 +118,7 @@ export class SoundTile extends Component {
         {on ? (
           <>
             {SoundButton}
-            <Slider />
+            <Slider sliderPos={sliderPos} />
           </>
         ) : (
           <>{SoundButton}</>
