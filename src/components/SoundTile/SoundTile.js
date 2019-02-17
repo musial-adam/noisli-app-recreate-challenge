@@ -32,8 +32,6 @@ export class SoundTile extends Component {
     const { sound } = this.props;
     const soundHook = document.getElementById(sound);
 
-    // event.preventDefault();
-
     if (event.keyCode === 32) {
       event.preventDefault();
       this.toggleHandler();
@@ -59,26 +57,6 @@ export class SoundTile extends Component {
       // console.log(volume);
       this.setState({ volume, sliderPos });
     }
-    // console.log(`volume is ${volume}`);
-    //   // if (event.key === '39') {
-    //   // event.preventDefault();
-    //   // this.toggleHandler();
-    //   console.log(`You press ${event.charCode}`);
-    // }
-
-    // console.log(`boolean altKey ${event.altKey}`);
-    // console.log(`number charCode ${event.charCode}`);
-    // console.log(`boolean ctrlKey ${event.ctrlKey}`);
-    // console.log(`string key ${event.key}`);
-    // console.log(`number keyCode ${event.keyCode}`);
-    // console.log(`string locale ${event.locale}`);
-    // console.log(`number location ${event.location}`);
-    // console.log(`boolean metaKey ${event.metaKey}`);
-    // console.log(`boolean repeat ${event.repeat}`);
-    // console.log(`boolean shiftKey ${event.shiftKey}`);
-    // console.log(`number which ${event.which}`);
-    // console.log('------------------------------------');
-    // console.log('boolean getModifierState(key))
   };
 
   togglePlay = () => {

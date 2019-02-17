@@ -4,18 +4,21 @@ import PropTypes from 'prop-types';
 import styles from './Slider.module.scss';
 
 const Slider = props => {
+  const { sliderPos } = props;
   return (
-    <div className={styles.SliderContainer}>
+    <>
       <div className={styles.Slider}>
         <div
           className={styles.SliderControl}
-          style={{ left: `${props.sliderPos}px` }}
+          style={{ left: `${sliderPos}px` }}
         />
       </div>
-    </div>
+    </>
   );
 };
 
-Slider.propTypes = {};
+Slider.propTypes = {
+  sliderPos: PropTypes.number.isRequired,
+};
 
 export default Slider;
