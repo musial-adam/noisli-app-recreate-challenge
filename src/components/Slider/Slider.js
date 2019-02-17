@@ -41,7 +41,16 @@ export class Slider extends Component {
     }
   };
 
-  handleMouseDown = event => {
+  handleMouseMove = event => {
+    // console.log;
+    if (event.button === 0) {
+      const divHook = this.SliderRef.current;
+      const position = event.clientX - divHook.offsetLeft;
+      // const position = event.clientX;
+      if (position >= 0 && position <= 200) {
+        this.setState({ position });
+      }
+    }
     console.log(event.button);
   };
 
@@ -63,7 +72,7 @@ export class Slider extends Component {
           <div
             className={styles.SliderControl}
             style={{ left: `${position}px` }}
-            onMouseDown={this.handleMouseDown}
+            onMouseMove={this.handleMouseMove}
             ref={this.ControlRef}
           />
         </div>
