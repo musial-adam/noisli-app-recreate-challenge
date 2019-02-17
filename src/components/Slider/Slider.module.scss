@@ -13,12 +13,16 @@
     top: -8px;
     transform: translateX(-50%);
 
-    &:hover {
-      cursor: pointer;
+		&:hover,
+		&:focus {
+			cursor: pointer;
+			outline: none;
     }
   }
 
-  &:hover {
-    cursor: pointer;
+	&:hover,
+	&:focus {
+		cursor: pointer;
+		outline: none;
   }
 }

@@ -4,12 +4,13 @@ import './App.scss';
 import ToggleMute from './components/ToggleMute/ToggleMute';
 import SoundBoard from './components/SoundBoard/SoundBoard';
 import Button from './components/Button/Button';
+import Slider from './components/Slider/Slider';
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <h1>Noisli</h1>
+        {/* <h1>Noisli</h1>
         <h2>
           Improve focus and boost your productivity.
           <br />
@@ -19,7 +20,8 @@ class App extends Component {
         <Button>Random</Button>
         <Button>Productivity</Button>
         <Button>Relax</Button>
-        <SoundBoard />
+        <SoundBoard /> */}
+        <Slider />
       </div>
     );
   }
