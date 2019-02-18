@@ -8,6 +8,7 @@ export class Slider extends Component {
 
   state = {
     position: 0,
+    mouseDown: false,
   };
 
   constructor(props) {
@@ -42,8 +43,8 @@ export class Slider extends Component {
   };
 
   handleMouseMove = event => {
-    // console.log;
-    if (event.button === 0) {
+    const { mouseDown } = this.state;
+    if (mouseDown) {
       const divHook = this.SliderRef.current;
       const position = event.clientX - divHook.offsetLeft;
       // const position = event.clientX;
@@ -51,7 +52,18 @@ export class Slider extends Component {
         this.setState({ position });
       }
     }
-    console.log(event.button);
+  };
+
+  handleMouseDown = event => {
+    this.setState({ mouseDown: true });
+    document.addEventListener('mousemove', this.handleMouseMove);
+    document.addEventListener('mouseup', this.handleMouseUp);
+  };
+
+  handleMouseUp = event => {
+    this.setState({ mouseDown: false });
+    document.removeEventListener('mousemove', this.handleMouseMove);
+    document.removeEventListener('mouseup', this.handleMouseUp);
   };
 
   render() {
@@ -67,12 +79,13 @@ export class Slider extends Component {
           className={styles.Slider}
           onKeyDown={this.handleKeyPress}
           onClick={this.handleMouseClick}
+          onMouseDown={this.handleMouseClick}
           ref={this.SliderRef}
         >
           <div
             className={styles.SliderControl}
             style={{ left: `${position}px` }}
-            onMouseMove={this.handleMouseMove}
+            onMouseDown={this.handleMouseDown}
             ref={this.ControlRef}
           />
         </div>
