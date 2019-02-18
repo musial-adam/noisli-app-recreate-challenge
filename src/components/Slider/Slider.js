@@ -20,8 +20,6 @@ export class Slider extends Component {
   handleKeyPress = event => {
     let { position } = this.state;
 
-    console.log('aloha');
-
     if ((event.keyCode === 38 || event.keyCode === 39) && position <= 200) {
       event.preventDefault();
       position += 2;
@@ -55,6 +53,7 @@ export class Slider extends Component {
   };
 
   handleMouseDown = event => {
+    this.handleMouseClick(event);
     this.setState({ mouseDown: true });
     document.addEventListener('mousemove', this.handleMouseMove);
     document.addEventListener('mouseup', this.handleMouseUp);
@@ -79,7 +78,7 @@ export class Slider extends Component {
           className={styles.Slider}
           onKeyDown={this.handleKeyPress}
           onClick={this.handleMouseClick}
-          onMouseDown={this.handleMouseClick}
+          onMouseDown={this.handleMouseDown}
           ref={this.SliderRef}
         >
           <div
