@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 
 import styles from './Slider.module.scss';
 
-export class Slider extends Component {
-  static propTypes = {};
+class Slider extends Component {
+  // static propTypes = {
+  //   volume: PropTypes.number.isRequired,
+  // };
 
   state = {
     position: 0,
@@ -14,7 +16,6 @@ export class Slider extends Component {
   constructor(props) {
     super(props);
     this.SliderRef = React.createRef();
-    this.ControlRef = React.createRef();
   }
 
   handleKeyPress = event => {
@@ -45,7 +46,6 @@ export class Slider extends Component {
     if (mouseDown) {
       const divHook = this.SliderRef.current;
       const position = event.clientX - divHook.offsetLeft;
-      // const position = event.clientX;
       if (position >= 0 && position <= 200) {
         this.setState({ position });
       }
@@ -59,7 +59,7 @@ export class Slider extends Component {
     document.addEventListener('mouseup', this.handleMouseUp);
   };
 
-  handleMouseUp = event => {
+  handleMouseUp = () => {
     this.setState({ mouseDown: false });
     document.removeEventListener('mousemove', this.handleMouseMove);
     document.removeEventListener('mouseup', this.handleMouseUp);
@@ -82,10 +82,10 @@ export class Slider extends Component {
           ref={this.SliderRef}
         >
           <div
+            role="presentation"
             className={styles.SliderControl}
             style={{ left: `${position}px` }}
             onMouseDown={this.handleMouseDown}
-            ref={this.ControlRef}
           />
         </div>
       </>
