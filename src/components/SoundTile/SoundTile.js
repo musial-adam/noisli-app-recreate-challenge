@@ -92,7 +92,7 @@ export class SoundTile extends Component {
         {on ? (
           <>
             {/* {SoundButton} */}
-            <SoundSlider sound={sound} />
+            <SoundSlider sound={sound} on={on} />
           </>
         ) : (
           <>

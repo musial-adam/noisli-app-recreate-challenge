@@ -7,11 +7,12 @@
   &Control {
     height: 18px;
     width: 18px;
-    background-color: white;
+    background-color: orange;
     border-radius: 50%;
     position: absolute;
     top: -8px;
-    transform: translateX(-50%);
+		transform: translateX(-50%);
+		z-index: -100;
 
 		&:hover,
 		&:focus {

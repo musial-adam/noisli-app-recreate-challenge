@@ -28,6 +28,12 @@ class SoundSlider extends Component {
     soundHook.play();
   }
 
+  componentDidUpdate() {
+    // const volume = 0.075;
+    // console.log(parseFloat(volume.toPrecision(2)));
+    // console.log('jjjj');
+  }
+
   componentWillUnmount() {
     const { sound } = this.props;
     const soundHook = document.getElementById(sound);
@@ -53,19 +59,24 @@ class SoundSlider extends Component {
     const { sound } = this.props;
     const soundHook = document.getElementById(sound);
 
-    if ((event.keyCode === 38 || event.keyCode === 39) && position <= 200) {
+    if ((event.keyCode === 38 || event.keyCode === 39) && position <= 199) {
       event.preventDefault();
-      position += 2;
+      // position += 2;
+      position = position === 199 ? 200 : position + 2;
+      console.log(`position: ${position}`);
       volume += 0.01;
       volume = parseFloat(volume.toPrecision(2));
+      console.log(`volume: ${volume}`);
       soundHook.volume = volume;
       this.setState({ position, volume });
     }
-    if ((event.keyCode === 37 || event.keyCode === 40) && position >= 0) {
+    if ((event.keyCode === 37 || event.keyCode === 40) && position >= 1) {
       event.preventDefault();
-      position -= 2;
+      position = position === 1 ? 0 : position - 2;
+      console.log(`position: ${position}`);
       volume -= 0.01;
       volume = parseFloat(volume.toPrecision(2));
+      console.log(`volume: ${volume}`);
       soundHook.volume = volume;
       this.setState({ position, volume });
     }
@@ -74,12 +85,14 @@ class SoundSlider extends Component {
   handleMouseClick = event => {
     const divHook = this.SliderRef.current;
     const position = event.clientX - divHook.offsetLeft;
+    console.log(`position: ${position}`);
     const { sound } = this.props;
     const soundHook = document.getElementById(sound);
 
     if (position >= 0 && position <= 200) {
       let volume = position / 200;
       volume = parseFloat(volume.toPrecision(2));
+      console.log(`volume: ${volume}`);
       soundHook.volume = volume;
       this.setState({ position, volume });
     }
@@ -103,6 +116,7 @@ class SoundSlider extends Component {
   };
 
   handleMouseDown = event => {
+    // console.log('no siema');
     this.handleMouseClick(event);
     this.setState({ mouseDown: true });
     document.addEventListener('mousemove', this.handleMouseMove);
