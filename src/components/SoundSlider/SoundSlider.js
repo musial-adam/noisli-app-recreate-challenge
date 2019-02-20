@@ -9,7 +9,7 @@ class SoundSlider extends Component {
   };
 
   state = {
-    position: 0,
+    position: 100,
     mouseDown: false,
     volume: 0.5,
   };
@@ -49,25 +49,39 @@ class SoundSlider extends Component {
   // };
 
   handleKeyPress = event => {
-    let { position } = this.state;
+    let { position, volume } = this.state;
+    const { sound } = this.props;
+    const soundHook = document.getElementById(sound);
 
     if ((event.keyCode === 38 || event.keyCode === 39) && position <= 200) {
       event.preventDefault();
       position += 2;
-      this.setState({ position });
+      volume += 0.01;
+      volume = parseFloat(volume.toPrecision(2));
+      soundHook.volume = volume;
+      this.setState({ position, volume });
     }
     if ((event.keyCode === 37 || event.keyCode === 40) && position >= 0) {
       event.preventDefault();
       position -= 2;
-      this.setState({ position });
+      volume -= 0.01;
+      volume = parseFloat(volume.toPrecision(2));
+      soundHook.volume = volume;
+      this.setState({ position, volume });
     }
   };
 
   handleMouseClick = event => {
     const divHook = this.SliderRef.current;
     const position = event.clientX - divHook.offsetLeft;
+    const { sound } = this.props;
+    const soundHook = document.getElementById(sound);
+
     if (position >= 0 && position <= 200) {
-      this.setState({ position });
+      let volume = position / 200;
+      volume = parseFloat(volume.toPrecision(2));
+      soundHook.volume = volume;
+      this.setState({ position, volume });
     }
   };
 
@@ -76,8 +90,14 @@ class SoundSlider extends Component {
     if (mouseDown) {
       const divHook = this.SliderRef.current;
       const position = event.clientX - divHook.offsetLeft;
+      const { sound } = this.props;
+      const soundHook = document.getElementById(sound);
       if (position >= 0 && position <= 200) {
-        this.setState({ position });
+        let volume = position / 200;
+        volume = parseFloat(volume.toPrecision(2));
+        soundHook.volume = volume;
+        console.log(volume);
+        this.setState({ position, volume });
       }
     }
   };
@@ -97,7 +117,7 @@ class SoundSlider extends Component {
 
   render() {
     const { position } = this.state;
-    const { sound } = this.props;
+    const { sound, on } = this.props;
     return (
       <>
         <div

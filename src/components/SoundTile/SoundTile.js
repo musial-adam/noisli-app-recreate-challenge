@@ -44,10 +44,10 @@ export class SoundTile extends Component {
     // let { volume, sliderPos } = this.state;
     // const { sound } = this.props;
     // const soundHook = document.getElementById(sound);
-    // if (event.keyCode === 32) {
-    //   event.preventDefault();
-    //   this.toggleHandler();
-    // }
+    if (event.keyCode === 32) {
+      event.preventDefault();
+      this.toggleHandler();
+    }
     // if ((event.keyCode === 38 || event.keyCode === 39) && volume < 1) {
     //   event.preventDefault();
     //   volume += 0.01;
@@ -88,13 +88,17 @@ export class SoundTile extends Component {
 
     return (
       <div className={styles.SoundTile}>
+        {SoundButton}
         {on ? (
           <>
-            {SoundButton}
+            {/* {SoundButton} */}
             <SoundSlider sound={sound} />
           </>
         ) : (
-          <>{SoundButton}</>
+          <>
+            {/* {SoundButton} */}
+            {/* <SoundSlider sound={sound} style={{ opacity: 0.3 }} /> */}
+          </>
         )}
         {/* <audio id={sound} preload="auto" loop>
           <track default kind="captions" />
