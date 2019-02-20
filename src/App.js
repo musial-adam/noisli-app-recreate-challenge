@@ -3,6 +3,7 @@ import './App.scss';
 
 import ToggleMute from './components/ToggleMute/ToggleMute';
 import SoundBoard from './components/SoundBoard/SoundBoard';
+import SoundTile from './components/SoundTile/SoundTile';
 import Button from './components/Button/Button';
 import Slider from './components/Slider/Slider';
 
@@ -21,7 +22,8 @@ class App extends Component {
         <Button>Productivity</Button>
         <Button>Relax</Button>
         <SoundBoard /> */}
-        <Slider />
+        <SoundTile icon="01-rain.png" alt="Rain icon" sound="01-rain.mp4" />
+        {/* <Slider /> */}
       </div>
     );
   }

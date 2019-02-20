@@ -1,0 +1,28 @@
+.SoundSlider {
+  height: 2px;
+  width: 200px;
+  border-radius: 1px;
+  background-color: white;
+  position: relative;
+  &Control {
+    height: 18px;
+    width: 18px;
+    background-color: white;
+    border-radius: 50%;
+    position: absolute;
+    top: -8px;
+    transform: translateX(-50%);
+
+		&:hover,
+		&:focus {
+			cursor: pointer;
+			outline: none;
+    }
+  }
+
+	&:hover,
+	&:focus {
+		cursor: pointer;
+		outline: none;
+  }
+}
