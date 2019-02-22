@@ -89,10 +89,11 @@ export class SoundTile extends Component {
     return (
       <div className={styles.SoundTile}>
         {SoundButton}
+        <SoundSlider sound={sound} on={on} />
         {on ? (
           <>
             {/* {SoundButton} */}
-            <SoundSlider sound={sound} on={on} />
+            {/* <SoundSlider sound={sound} on={on} /> */}
           </>
         ) : (
           <>
@@ -100,11 +101,6 @@ export class SoundTile extends Component {
             {/* <SoundSlider sound={sound} style={{ opacity: 0.3 }} /> */}
           </>
         )}
-        {/* <audio id={sound} preload="auto" loop>
-          <track default kind="captions" />
-          <source src={`./assets/sounds/${sound}`} type="audio/mp4" />
-          Your browser does not support the <code>audio</code> element.
-        </audio> */}
       </div>
     );
   }
