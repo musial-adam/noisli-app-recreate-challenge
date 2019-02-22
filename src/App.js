@@ -11,7 +11,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        {/* <h1>Noisli</h1>
+        <h1>Noisli</h1>
         <h2>
           Improve focus and boost your productivity.
           <br />
@@ -21,9 +21,8 @@ class App extends Component {
         <Button>Random</Button>
         <Button>Productivity</Button>
         <Button>Relax</Button>
-        <SoundBoard /> */}
-        <SoundTile icon="01-rain.png" alt="Rain icon" sound="01-rain.mp4" />
-        {/* <Slider /> */}
+        <SoundBoard />
+        {/* <SoundTile icon="01-rain.png" alt="Rain icon" sound="01-rain.mp4" /> */}
       </div>
     );
   }
